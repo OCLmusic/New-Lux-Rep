@@ -151,13 +151,6 @@
             flex-direction: column;
         }
 
-        /* Fix hero background for mobile */
-        @media (max-width: 768px) {
-            .hero {
-                background-attachment: scroll;
-            }
-        }
-
         .hero::before {
             content: '';
             position: absolute;
@@ -682,7 +675,7 @@
             line-height: 1.8;
             color: #333;
             font-style: italic;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .testimonial-author {
@@ -801,7 +794,7 @@
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .contact-info p {
@@ -873,7 +866,7 @@
                 background: rgba(26, 26, 26, 0.98);
                 backdrop-filter: blur(10px);
                 flex-direction: column;
-                padding: 120px 40px 40px;
+                padding: 80px 40px 40px;
                 gap: 40px;
                 transition: right 0.4s ease;
                 left: auto;
@@ -905,7 +898,7 @@
             }
 
             .mobile-nav-logo-item {
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
 
             .mobile-nav-logo-item a {
@@ -913,9 +906,29 @@
             }
 
             .mobile-nav-logo-img {
-                height: 60px;
+                height: 90px;
                 width: auto;
                 filter: brightness(0) invert(1);
+            }
+
+            .mobile-quote-btn {
+                display: inline-block;
+                margin-top: 20px;
+                padding: 18px 50px;
+                background: #1a1a1a;
+                color: white;
+                text-decoration: none;
+                font-size: 14px;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                transition: all 0.3s ease;
+                font-weight: 500;
+            }
+
+            .mobile-quote-btn:hover {
+                background: #3a3a3a;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             }
 
             .hero-logo {
@@ -1322,6 +1335,7 @@
         <li><a href="#gallery">GALLERY</a></li>
         <li><a href="#about">ABOUT</a></li>
         <li><a href="#contact">CONTACT</a></li>
+        <li><a href="quote.html" class="mobile-quote-btn">GET A QUOTE</a></li>
     </ul>
 
     <!-- Hero Section -->
@@ -1336,6 +1350,7 @@
                 <li><a href="#gallery">GALLERY</a></li>
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#contact">CONTACT</a></li>
+        <li><a href="quote.html" class="mobile-quote-btn">GET A QUOTE</a></li>
             </ul>
         </nav>
 
@@ -1574,8 +1589,6 @@
         <p class="section-subtitle">Where craftsmanship meets artistry</p>
         <div class="about-content">
             <p>At Luxury Painting, we believe that every surface tells a story. With decades of combined experience, our team of master craftsmen brings an unparalleled level of precision and artistry to every project. From the grandest estates to the most intimate spaces, we transform homes with meticulous attention to detail and an unwavering commitment to excellence.</p>
-            <br>
-            <p>Our approach combines traditional techniques with modern innovation, ensuring finishes that are not only beautiful but enduring. We understand that your home is your sanctuary, and we treat every project with the respect and care it deserves.</p>
         </div>
     </section>
 
@@ -1589,7 +1602,6 @@
                 <p><strong>Phone:</strong><br><a href="tel:+19704705533" style="color: inherit; text-decoration: none;">(970) 470-5533</a></p>
                 <p><strong>Email:</strong><br><a href="mailto:info@luxurypaintinginc.com" style="color: inherit; text-decoration: none;">info@luxurypaintinginc.com</a></p>
                 <p><strong>Service Area:</strong><br>Vail Valley, Summit County,<br>& Denver Metro Area</p>
-                <p><strong>Hours:</strong><br>Mon-Fri: 8:00 AM - 6:00 PM<br>Sat: 9:00 AM - 4:00 PM</p>
             </div>
             <a href="quote.html" class="quote-btn">GET A QUOTE</a>
         </div>
@@ -1764,11 +1776,7 @@
         
         if (galleryGrid && prevBtn && nextBtn) {
             prevBtn.addEventListener('click', () => {
-                // Get the actual width of one gallery item plus gap
-                const galleryItem = galleryGrid.querySelector('.gallery-item');
-                const gap = 30; // matches the gap in CSS
-                const scrollAmount = galleryItem.offsetWidth + gap;
-                
+                const scrollAmount = galleryGrid.clientWidth;
                 galleryGrid.scrollBy({
                     left: -scrollAmount,
                     behavior: 'smooth'
@@ -1776,11 +1784,7 @@
             });
             
             nextBtn.addEventListener('click', () => {
-                // Get the actual width of one gallery item plus gap
-                const galleryItem = galleryGrid.querySelector('.gallery-item');
-                const gap = 30; // matches the gap in CSS
-                const scrollAmount = galleryItem.offsetWidth + gap;
-                
+                const scrollAmount = galleryGrid.clientWidth;
                 galleryGrid.scrollBy({
                     left: scrollAmount,
                     behavior: 'smooth'
