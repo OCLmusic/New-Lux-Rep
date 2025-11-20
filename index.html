@@ -151,6 +151,13 @@
             flex-direction: column;
         }
 
+        /* Fix hero background for mobile */
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+        }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -802,6 +809,26 @@
             line-height: 2;
             color: #666;
             margin-bottom: 15px;
+        }
+
+        .quote-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 18px 50px;
+            background: #1a1a1a;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .quote-btn:hover {
+            background: #3a3a3a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         /* Footer */
@@ -1564,6 +1591,7 @@
                 <p><strong>Service Area:</strong><br>Vail Valley, Summit County,<br>& Denver Metro Area</p>
                 <p><strong>Hours:</strong><br>Mon-Fri: 8:00 AM - 6:00 PM<br>Sat: 9:00 AM - 4:00 PM</p>
             </div>
+            <a href="quote.html" class="quote-btn">GET A QUOTE</a>
         </div>
     </section>
 
@@ -1736,7 +1764,11 @@
         
         if (galleryGrid && prevBtn && nextBtn) {
             prevBtn.addEventListener('click', () => {
-                const scrollAmount = galleryGrid.clientWidth;
+                // Get the actual width of one gallery item plus gap
+                const galleryItem = galleryGrid.querySelector('.gallery-item');
+                const gap = 30; // matches the gap in CSS
+                const scrollAmount = galleryItem.offsetWidth + gap;
+                
                 galleryGrid.scrollBy({
                     left: -scrollAmount,
                     behavior: 'smooth'
@@ -1744,7 +1776,11 @@
             });
             
             nextBtn.addEventListener('click', () => {
-                const scrollAmount = galleryGrid.clientWidth;
+                // Get the actual width of one gallery item plus gap
+                const galleryItem = galleryGrid.querySelector('.gallery-item');
+                const gap = 30; // matches the gap in CSS
+                const scrollAmount = galleryItem.offsetWidth + gap;
+                
                 galleryGrid.scrollBy({
                     left: scrollAmount,
                     behavior: 'smooth'
