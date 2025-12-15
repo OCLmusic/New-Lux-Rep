@@ -768,6 +768,20 @@
         }
 
         /* About Section */
+		/* About section responsive text */
+.about-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .about-desktop {
+        display: none;
+    }
+    .about-mobile {
+        display: block;
+    }
+}
+		
         .about {
             background: #1a1a1a;
             color: white;
@@ -1593,22 +1607,27 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <h2 class="section-title">About</h2>
-        <p class="section-subtitle">Where craftsmanship meets artistry</p>
-        <div class="about-content">
-            <p style="margin-bottom: 20px;"> Jesus Lopez has spent over two decades painting some of the finest homes in the Vail Valley. His passion for painting is reflected in every project and has earned him a reputation for precision, quality, and reliability. </p>
-			
-			<p></p>
 
-	<p style="margin-bottom: 20px;"> Luxury Painting Inc provides premium residential and commercial painting, with a focus on careful preparation, attention to detail, and clean execution. Every project is thoughtfully planned and executed to deliver lasting results and a seamless experience for our clients.</p>
-
-			<p> </p>
-			
-	<p> Together with his son Ossiel, Jesus leads a team dedicated to delivering high-end finishes and a painting experience that exceeds expectations.</p>
+   <!-- About Section -->
+<section class="about" id="about">
+    <h2 class="section-title">About</h2>
+    <p class="section-subtitle">Where craftsmanship meets artistry</p>
+    <div class="about-content">
+        <!-- Desktop version (full) -->
+        <div class="about-desktop">
+            <p style="margin-bottom: 20px;">Jesus Lopez has spent over two decades painting some of the finest homes in the Vail Valley. His passion for painting is reflected in every project and has earned him a reputation for precision, quality, and reliability.</p>
+            <p style="margin-bottom: 20px;">Luxury Painting Inc provides premium residential and commercial painting, with a focus on careful preparation, attention to detail, and clean execution. Every project is thoughtfully planned and executed to deliver lasting results and a seamless experience for our clients.</p>
+            <p>Together with his son Ossiel, Jesus leads a team dedicated to delivering high-end finishes and a painting experience that exceeds expectations.</p>
         </div>
-    </section>
+        
+        <!-- Mobile version (condensed) -->
+        <div class="about-mobile">
+            <p style="margin-bottom: 20px;">Jesus Lopez has spent over two decades painting some of the finest homes in the Vail Valley. His passion for painting is reflected in every project, earning a reputation for precision, quality, and reliability.</p>
+            <p style="margin-bottom: 20px;">Luxury Painting Inc provides premium residential and commercial painting with careful preparation, attention to detail, and clean execution.</p>
+            <p>Together with his son Ossiel, Jesus leads a team dedicated to high-end finishes and a painting experience that exceeds expectations.</p>
+        </div>
+    </div>
+</section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
