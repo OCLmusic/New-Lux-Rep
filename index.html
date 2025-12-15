@@ -159,7 +159,17 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.2);
+			
         }
+		
+		@media (max-width: 768px) {
+    /* Fix hero image on mobile */
+    .hero {
+        background-attachment: scroll;
+    }
+    
+    /* ... rest of your existing mobile styles ... */
+}
 
         /* Navigation */
         nav {
