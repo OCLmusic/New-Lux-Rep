@@ -103,7 +103,14 @@
         </article>
     </div>
     
-    <footer><p>&copy; 2024 Luxury Painting Inc. All Rights Reserved.</p></footer>
+    <footer><p>&copy; 2024 Luxury Painting Inc. All Rights Reserved.</p>
+	
+	<p style="margin-top: 20px; font-size: 11px;">
+    <a href="privacy-policy.html" style="color: rgba(255,255,255,0.6); text-decoration: none; margin-right: 20px;">Privacy Policy</a>
+    <a href="warranty.html" style="color: rgba(255,255,255,0.6); text-decoration: none;">Warranty</a>
+</p>
+	
+	</footer>
     <script>const hamburger=document.getElementById('hamburger');const mobileNavLinks=document.getElementById('mobileNavLinks');if(hamburger&&mobileNavLinks){hamburger.addEventListener('click',(e)=>{e.stopPropagation();hamburger.classList.toggle('active');mobileNavLinks.classList.toggle('active')});document.querySelectorAll('.mobile-nav-links a').forEach(link=>{link.addEventListener('click',()=>{hamburger.classList.remove('active');mobileNavLinks.classList.remove('active')})});}const tocLinks=document.querySelectorAll('.toc-list a');const sections=document.querySelectorAll('.article-content h2[id]');let isClicking=false;function setActiveLink(id){tocLinks.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')==='#'+id){link.classList.add('active')}});}function updateActiveLink(){if(isClicking)return;let current='';const scrollPosition=window.scrollY+150;sections.forEach(section=>{if(scrollPosition>=section.offsetTop){current=section.getAttribute('id')}});setActiveLink(current);}tocLinks.forEach(link=>{link.addEventListener('click',(e)=>{isClicking=true;setActiveLink(link.getAttribute('href').substring(1));setTimeout(()=>{isClicking=false},1000)})});window.addEventListener('scroll',updateActiveLink);updateActiveLink();</script>
 </body>
 </html>
