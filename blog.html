@@ -185,6 +185,22 @@
             font-weight: 500;
         }
 
+        /* Desktop nav quote button - match other links */
+        .nav-links .nav-quote-btn {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 14px;
+            letter-spacing: 3px;
+            font-weight: 400;
+            transition: opacity 0.3s ease;
+            background: none;
+            padding: 0;
+        }
+
+        .nav-links .nav-quote-btn:hover {
+            opacity: 0.7;
+        }
+
         /* Hero Section */
         .hero {
             padding: 180px 60px 120px;
@@ -560,7 +576,7 @@
             <li><a href="blog.html" class="active">BLOG</a></li>
             <li><a href="index.html#about">ABOUT</a></li>
             <li><a href="index.html#contact">CONTACT</a></li>
-            <li><a href="quote.html" class="mobile-quote-btn">GET A QUOTE</a></li>
+            <li><a href="quote.html" class="nav-quote-btn">GET A QUOTE</a></li>
         </ul>
     </nav>
 
@@ -576,16 +592,16 @@
         <div class="section-header">
             <h2 class="section-title">Latest Articles</h2>
             <div class="filter-tags">
-                <button class="filter-tag active">All</button>
-                <button class="filter-tag">Exterior</button>
-                <button class="filter-tag">Interior</button>
-                <button class="filter-tag">Maintenance</button>
+                <button class="filter-tag active" data-filter="all">All</button>
+                <button class="filter-tag" data-filter="exterior">Exterior</button>
+                <button class="filter-tag" data-filter="interior">Interior</button>
+                <button class="filter-tag" data-filter="maintenance">Maintenance</button>
             </div>
         </div>
 
         <div class="blog-grid">
             <!-- Featured Post -->
-            <a href="blog-post-vail-weather.html" class="blog-card featured">
+            <a href="blog-post-vail-weather.html" class="blog-card featured" data-category="exterior">
                 <div class="card-image">
                     <span class="card-category">Exterior</span>
                     <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Vail mountain landscape">
@@ -604,7 +620,7 @@
             </a>
 
             <!-- Regular Posts -->
-            <a href="#" class="blog-card">
+            <a href="#" class="blog-card" data-category="interior">
                 <div class="card-image">
                     <span class="card-category">Interior</span>
                     <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" alt="Interior paint colors">
@@ -622,7 +638,7 @@
                 </div>
             </a>
 
-            <a href="#" class="blog-card">
+            <a href="#" class="blog-card" data-category="maintenance">
                 <div class="card-image">
                     <span class="card-category">Maintenance</span>
                     <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80" alt="Log cabin exterior">
@@ -640,7 +656,7 @@
                 </div>
             </a>
 
-            <a href="#" class="blog-card">
+            <a href="#" class="blog-card" data-category="interior">
                 <div class="card-image">
                     <span class="card-category">Interior</span>
                     <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Luxury interior">
@@ -658,7 +674,7 @@
                 </div>
             </a>
 
-            <a href="#" class="blog-card">
+            <a href="#" class="blog-card" data-category="exterior">
                 <div class="card-image">
                     <span class="card-category">Exterior</span>
                     <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Modern mountain home">
@@ -703,12 +719,33 @@
             });
         }
 
-        // Filter tags functionality
+        // Filter functionality
         const filterTags = document.querySelectorAll('.filter-tag');
+        const blogCards = document.querySelectorAll('.blog-card');
+
         filterTags.forEach(tag => {
             tag.addEventListener('click', () => {
+                // Update active state on buttons
                 filterTags.forEach(t => t.classList.remove('active'));
                 tag.classList.add('active');
+
+                // Get the filter value
+                const filter = tag.getAttribute('data-filter');
+
+                // Filter the cards
+                blogCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = '';
+                        // Reset animation
+                        card.style.animation = 'none';
+                        card.offsetHeight; // Trigger reflow
+                        card.style.animation = 'fadeInUp 0.6s ease forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
     </script>
