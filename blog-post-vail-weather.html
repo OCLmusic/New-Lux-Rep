@@ -320,11 +320,23 @@
             });
         }
         
-        // Table of Contents - Active state on scroll
+        // Table of Contents - Active state on scroll and click
         const tocLinks = document.querySelectorAll('.toc-list a');
         const sections = document.querySelectorAll('.article-content h2[id], .article-content h3[id], .faq-section[id]');
+        let isClicking = false;
+        
+        function setActiveLink(id) {
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + id) {
+                    link.classList.add('active');
+                }
+            });
+        }
         
         function updateActiveLink() {
+            if (isClicking) return;
+            
             let current = '';
             const scrollPosition = window.scrollY + 150;
             
@@ -335,13 +347,24 @@
                 }
             });
             
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
+            setActiveLink(current);
         }
+        
+        // Handle click on TOC links
+        tocLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Immediately set active state on click
+                isClicking = true;
+                setActiveLink(targetId);
+                
+                // Re-enable scroll detection after animation completes
+                setTimeout(() => {
+                    isClicking = false;
+                }, 1000);
+            });
+        });
         
         window.addEventListener('scroll', updateActiveLink);
         updateActiveLink();
