@@ -21,6 +21,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04257.jpg?raw=true">
+    <link rel="preload" as="image" href="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04250.jpg?raw=true">
+    <link rel="preload" as="image" href="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04270.jpg?raw=true">
+    
     <style>
         * {
             margin: 0;
@@ -246,7 +251,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-auto-rows: 100px;
-            gap: 0;
+            gap: 15px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -255,6 +260,8 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            background: #f0f0f0;
+            border-radius: 8px;
         }
 
         .gallery-item img {
@@ -262,16 +269,21 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.6s ease;
+            transition: transform 0.6s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .gallery-item img.loaded {
+            opacity: 1;
         }
 
         .gallery-item:hover img {
             transform: scale(1.03);
         }
 
-        /* Horizontal images - 2 rows */
+        /* Horizontal images - 3 rows */
         .gallery-item.h {
-            grid-row: span 2;
+            grid-row: span 3;
         }
 
         /* Vertical images - 6 rows */
@@ -390,40 +402,19 @@
             .masonry-grid {
                 grid-template-columns: repeat(2, 1fr);
                 grid-auto-rows: 80px;
-                gap: 0;
+                gap: 10px;
+            }
+
+            .gallery-item {
+                border-radius: 6px;
             }
 
             .gallery-item.h {
-                grid-row: span 2;
+                grid-row: span 3;
             }
 
             .gallery-item.v {
-                grid-row: span 4;
-            }
-
-            .gallery-filter {
-                gap: 10px;
-                padding: 40px 15px 30px;
-            }
-
-            .filter-btn {
-                padding: 10px 18px;
-                font-size: 11px;
-                letter-spacing: 1px;
-            }
-
-            .lightbox-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-
-            .lightbox-prev {
-                left: 15px;
-            }
-
-            .lightbox-next {
-                right: 15px;
+                grid-row: span 5;
             }
 
             .lightbox-close {
@@ -439,15 +430,19 @@
             .masonry-grid {
                 grid-template-columns: repeat(2, 1fr);
                 grid-auto-rows: 60px;
-                gap: 0;
+                gap: 8px;
+            }
+
+            .gallery-item {
+                border-radius: 4px;
             }
 
             .gallery-item.h {
-                grid-row: span 2;
+                grid-row: span 3;
             }
 
             .gallery-item.v {
-                grid-row: span 4;
+                grid-row: span 5;
             }
 
             .page-header h1 {
@@ -518,82 +513,80 @@
         <p>A portfolio of excellence showcasing our finest work across Colorado's most beautiful homes</p>
     </header>
 
-
-
     <!-- Pinterest-style Masonry Gallery - True Alternating -->
     <section class="gallery-section">
         <div class="masonry-grid" id="galleryGrid">
             
             <!-- Row 1: H V H -->
             <div class="gallery-item h" style="grid-column: 1; grid-row: 1 / span 3;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04257.jpg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717832/Hor_Mirror_small_e7kr3f.jpg" alt="Project" loading="eager">
             </div>
             <div class="gallery-item v" style="grid-column: 2; grid-row: 1 / span 6;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04250.jpg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717829/Vertical_Ski_Bench_Small_egfx0f.jpg" alt="Project" loading="eager">
             </div>
             <div class="gallery-item h" style="grid-column: 3; grid-row: 1 / span 3;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04270.jpg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717834/Hor_Living_Room_small_vfccue.jpg" alt="Project" loading="eager">
             </div>
             
             <!-- Row 2: V H V -->
             <div class="gallery-item v" style="grid-column: 1; grid-row: 4 / span 6;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04244.jpeg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717829/Vertical_Ski_locker_and_beam_small_j1xc2h.jpg" alt="Project" loading="lazy">
             </div>
             <div class="gallery-item v" style="grid-column: 3; grid-row: 4 / span 6;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04237.jpeg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717831/Vertical_Beam_small_lx27xg.jpg" alt="Project" loading="lazy">
             </div>
 
             <!-- H in middle -->
             <div class="gallery-item h" style="grid-column: 2; grid-row: 7 / span 3;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04249.jpg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717830/Hor_Ski_room_Small_kkujgo.jpg" alt="Project" loading="lazy">
             </div>
 
             <!-- Row 3: H V H -->
             <div class="gallery-item h" style="grid-column: 1; grid-row: 10 / span 3;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04172-Enhanced-NR.jpg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717714/Hor_Kitchen_Head_On_vobvlr.jpg" alt="Project" loading="lazy">
             </div>
             <div class="gallery-item v" style="grid-column: 2; grid-row: 10 / span 6;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04216.jpg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717829/Vertical_Stairs_and_wall_cr3f3a.jpg" alt="Project" loading="lazy">
             </div>
             <div class="gallery-item h" style="grid-column: 3; grid-row: 10 / span 3;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04166-Enhanced-NR%20Large.jpeg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717610/Hor_Kitchen_Side_View_cxmrtw.jpg" alt="Project" loading="lazy">
             </div>
 
             <!-- Row 4: V H V -->
             <div class="gallery-item v" style="grid-column: 1; grid-row: 13 / span 6;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04208-Enhanced-NR.jpeg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717827/Vertical_Bathroom_small_gafylq.jpg" alt="Project" loading="lazy">
             </div>
             <div class="gallery-item v" style="grid-column: 3; grid-row: 13 / span 6;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04190.jpg?raw=true" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717830/Vertical_Stairs_Men_olvohu.jpg" alt="Project" loading="lazy">
             </div>
 
             <!-- H in middle -->
             <div class="gallery-item h" style="grid-column: 2; grid-row: 16 / span 3;">
-                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04206.jpeg?raw=true" alt="Project">https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04172-Enhanced-NR.jpg?raw=true
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717827/Hor_Stairs_rvgk6b.jpg" alt="Project" loading="lazy">
             </div>
 
             <!-- Row 5: H V H -->
             <div class="gallery-item h" style="grid-column: 1; grid-row: 19 / span 3;">
-                <img src="https://placehold.co/600x400/355070/fff?text=H" alt="Project">
+                <img src="https://res.cloudinary.com/du9m30ahs/image/upload/v1767717827/Horizontal_Bathroom_small_fmpe4m.jpg" alt="Project" loading="lazy">
             </div>
             <div class="gallery-item v" style="grid-column: 2; grid-row: 19 / span 6;">
-                <img src="https://placehold.co/600x900/52796f/fff?text=V" alt="Project">
+                <img src="https://placehold.co/600x900/52796f/fff?text=V" alt="Project" loading="lazy">
             </div>
             <div class="gallery-item h" style="grid-column: 3; grid-row: 19 / span 3;">
-                <img src="https://placehold.co/600x400/cad2c5/333?text=H" alt="Project">
+                <img src="https://placehold.co/600x400/cad2c5/333?text=H" alt="Project" loading="lazy">
             </div>
 
             <!-- Row 6: V H V -->
             <div class="gallery-item v" style="grid-column: 1; grid-row: 22 / span 6;">
-                <img src="https://placehold.co/600x900/219ebc/fff?text=V" alt="Project">
+                <img src="https://placehold.co/600x900/219ebc/fff?text=V" alt="Project" loading="lazy">
             </div>
             <div class="gallery-item v" style="grid-column: 3; grid-row: 22 / span 6;">
-                <img src="https://placehold.co/600x900/84a98c/333?text=V" alt="Project">
+                <img src="https://placehold.co/600x900/84a98c/333?text=V" alt="Project" loading="lazy">
             </div>
 
             <!-- H in middle -->
             <div class="gallery-item h" style="grid-column: 2; grid-row: 25 / span 3;">
-                <img src="https://placehold.co/600x400/eaac8b/333?text=H" alt="Project">
+                <img src="https://placehold.co/600x400/eaac8b/333?text=H" alt="Project" loading="lazy">
             </div>
 
         </div>
@@ -642,6 +635,21 @@
             if (!hamburger.contains(e.target) && !mobileNavLinks.contains(e.target) && mobileNavLinks.classList.contains('active')) {
                 hamburger.classList.remove('active');
                 mobileNavLinks.classList.remove('active');
+            }
+        });
+
+        // Image loading handler - prevents white flash on scroll
+        const galleryImages = document.querySelectorAll('.gallery-item img');
+        
+        galleryImages.forEach(img => {
+            // If image is already cached/loaded
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                // When image loads
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                });
             }
         });
 
