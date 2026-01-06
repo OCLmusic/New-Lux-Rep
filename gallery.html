@@ -236,7 +236,7 @@
             line-height: 1.8;
         }
 
-        /* Masonry Gallery */
+        /* Pinterest-style Masonry Gallery */
         .gallery-section {
             padding: 60px 60px 120px;
             background: white;
@@ -245,8 +245,8 @@
         .masonry-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 8px;
-            gap: 20px;
+            grid-auto-rows: 100px;
+            gap: 0;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -255,15 +255,6 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-        }
-
-        /* Span heights for different image orientations */
-        .gallery-item.horizontal {
-            grid-row: span 25;
-        }
-
-        .gallery-item.vertical {
-            grid-row: span 45;
         }
 
         .gallery-item img {
@@ -275,42 +266,17 @@
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.03);
         }
 
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        /* Horizontal images - 2 rows */
+        .gallery-item.h {
+            grid-row: span 2;
         }
 
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-overlay h4 {
-            color: white;
-            font-family: 'Bodoni Moda', serif;
-            font-size: 24px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .gallery-overlay p {
-            color: rgba(255,255,255,0.7);
-            font-size: 13px;
-            letter-spacing: 1px;
+        /* Vertical images - 6 rows */
+        .gallery-item.v {
+            grid-row: span 6;
         }
 
         /* Lightbox */
@@ -322,53 +288,31 @@
             display: none;
             justify-content: center;
             align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .lightbox.active {
             display: flex;
-            opacity: 1;
         }
 
         .lightbox-content {
             position: relative;
             max-width: 90%;
             max-height: 90vh;
-            text-align: center;
         }
 
         .lightbox-content img {
             max-width: 100%;
-            max-height: 80vh;
+            max-height: 90vh;
             object-fit: contain;
         }
 
-        .lightbox-caption {
-            padding: 20px;
-            color: white;
-        }
-
-        .lightbox-caption h4 {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 24px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .lightbox-caption p {
-            color: rgba(255,255,255,0.7);
-            font-size: 14px;
-        }
-
         .lightbox-close {
-            position: absolute;
+            position: fixed;
             top: 30px;
             right: 30px;
             width: 50px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
             border: none;
             border-radius: 50%;
             color: #1a1a1a;
@@ -378,44 +322,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 3001;
         }
 
         .lightbox-close:hover {
-            background: white;
             transform: scale(1.1);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            color: #1a1a1a;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .lightbox-nav:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .lightbox-prev {
-            left: 30px;
-        }
-
-        .lightbox-next {
-            right: 30px;
         }
 
         /* Footer */
@@ -478,15 +389,16 @@
 
             .masonry-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                grid-auto-rows: 80px;
+                gap: 0;
             }
 
-            .gallery-item.horizontal {
-                grid-row: span 20;
+            .gallery-item.h {
+                grid-row: span 2;
             }
 
-            .gallery-item.vertical {
-                grid-row: span 35;
+            .gallery-item.v {
+                grid-row: span 4;
             }
 
             .gallery-filter {
@@ -525,23 +437,21 @@
 
         @media (max-width: 480px) {
             .masonry-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 60px;
+                gap: 0;
             }
 
-            .gallery-item.horizontal {
-                grid-row: span 25;
+            .gallery-item.h {
+                grid-row: span 2;
             }
 
-            .gallery-item.vertical {
-                grid-row: span 40;
+            .gallery-item.v {
+                grid-row: span 4;
             }
 
             .page-header h1 {
                 font-size: 28px;
-            }
-
-            .gallery-overlay h4 {
-                font-size: 20px;
             }
         }
 
@@ -610,116 +520,80 @@
 
 
 
-    <!-- Masonry Gallery -->
+    <!-- Pinterest-style Masonry Gallery - True Alternating -->
     <section class="gallery-section">
         <div class="masonry-grid" id="galleryGrid">
             
-            <!-- HORIZONTAL IMAGE -->
-            <div class="gallery-item horizontal">
-                <img src="https://placehold.co/800x500/e8e8e8/666666?text=Horizontal" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Living Room</h4>
-                    <p>Vail Valley Residence</p>
-                </div>
+            <!-- Row 1: H V H -->
+            <div class="gallery-item h" style="grid-column: 1; grid-row: 1 / span 3;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04257.jpg?raw=true" alt="Project">
+            </div>
+            <div class="gallery-item v" style="grid-column: 2; grid-row: 1 / span 6;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04250.jpg?raw=true" alt="Project">
+            </div>
+            <div class="gallery-item h" style="grid-column: 3; grid-row: 1 / span 3;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04270.jpg?raw=true" alt="Project">
+            </div>
+            
+            <!-- Row 2: V H V -->
+            <div class="gallery-item v" style="grid-column: 1; grid-row: 4 / span 6;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04244.jpg?raw=true" alt="Project">
+            </div>
+            <div class="gallery-item v" style="grid-column: 3; grid-row: 4 / span 6;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04237.jpg?raw=true" alt="Project">
             </div>
 
-            <!-- VERTICAL IMAGE -->
-            <div class="gallery-item vertical">
-                <img src="https://placehold.co/500x800/e8e8e8/666666?text=Vertical" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Mountain Estate</h4>
-                    <p>Beaver Creek</p>
-                </div>
+            <!-- H in middle -->
+            <div class="gallery-item h" style="grid-column: 2; grid-row: 7 / span 3;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04249.jpg?raw=true" alt="Project">
             </div>
 
-            <!-- HORIZONTAL -->
-            <div class="gallery-item horizontal">
-                <img src="https://placehold.co/800x500/e8e8e8/666666?text=Horizontal" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Venetian Plaster</h4>
-                    <p>Edwards Private Home</p>
-                </div>
+            <!-- Row 3: H V H -->
+            <div class="gallery-item h" style="grid-column: 1; grid-row: 10 / span 3;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04206.jpg?raw=true" alt="Project">
+            </div>
+            <div class="gallery-item v" style="grid-column: 2; grid-row: 10 / span 6;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04216.jpg?raw=true" alt="Project">
+            </div>
+            <div class="gallery-item h" style="grid-column: 3; grid-row: 10 / span 3;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04166-Enhanced-NR.jpg?raw=true" alt="Project">
             </div>
 
-            <!-- HORIZONTAL -->
-            <div class="gallery-item horizontal">
-                <img src="https://placehold.co/800x500/e8e8e8/666666?text=Horizontal" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Cabinet Refinish</h4>
-                    <p>Avon Kitchen</p>
-                </div>
+            <!-- Row 4: V H V -->
+            <div class="gallery-item v" style="grid-column: 1; grid-row: 13 / span 6;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04208.jpg?raw=true" alt="Project">
+            </div>
+            <div class="gallery-item v" style="grid-column: 3; grid-row: 13 / span 6;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04190.jpg?raw=true" alt="Project">
             </div>
 
-            <!-- VERTICAL -->
-            <div class="gallery-item vertical">
-                <img src="https://placehold.co/500x800/e8e8e8/666666?text=Vertical" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Master Suite</h4>
-                    <p>Bachelor Gulch</p>
-                </div>
+            <!-- H in middle -->
+            <div class="gallery-item h" style="grid-column: 2; grid-row: 16 / span 3;">
+                <img src="https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04172-Enhanced-NR.jpg?raw=true" alt="Project">https://github.com/OCLmusic/New-Lux-Rep/blob/main/Assets/Paint/DSC04172-Enhanced-NR.jpg?raw=true
             </div>
 
-            <!-- HORIZONTAL -->
-            <div class="gallery-item horizontal">
-                <img src="https://placehold.co/800x500/e8e8e8/666666?text=Horizontal" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Historic Home</h4>
-                    <p>Minturn</p>
-                </div>
+            <!-- Row 5: H V H -->
+            <div class="gallery-item h" style="grid-column: 1; grid-row: 19 / span 3;">
+                <img src="https://placehold.co/600x400/355070/fff?text=H" alt="Project">
+            </div>
+            <div class="gallery-item v" style="grid-column: 2; grid-row: 19 / span 6;">
+                <img src="https://placehold.co/600x900/52796f/fff?text=V" alt="Project">
+            </div>
+            <div class="gallery-item h" style="grid-column: 3; grid-row: 19 / span 3;">
+                <img src="https://placehold.co/600x400/cad2c5/333?text=H" alt="Project">
             </div>
 
-            <!-- VERTICAL -->
-            <div class="gallery-item vertical">
-                <img src="https://placehold.co/500x800/e8e8e8/666666?text=Vertical" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Faux Stone Wall</h4>
-                    <p>Arrowhead</p>
-                </div>
+            <!-- Row 6: V H V -->
+            <div class="gallery-item v" style="grid-column: 1; grid-row: 22 / span 6;">
+                <img src="https://placehold.co/600x900/219ebc/fff?text=V" alt="Project">
+            </div>
+            <div class="gallery-item v" style="grid-column: 3; grid-row: 22 / span 6;">
+                <img src="https://placehold.co/600x900/84a98c/333?text=V" alt="Project">
             </div>
 
-            <!-- HORIZONTAL -->
-            <div class="gallery-item horizontal">
-                <img src="https://placehold.co/800x500/e8e8e8/666666?text=Horizontal" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Wine Cellar</h4>
-                    <p>Cherry Creek</p>
-                </div>
-            </div>
-
-            <!-- HORIZONTAL -->
-            <div class="gallery-item horizontal">
-                <img src="https://placehold.co/800x500/e8e8e8/666666?text=Horizontal" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Deck Restoration</h4>
-                    <p>Summit County</p>
-                </div>
-            </div>
-
-            <!-- VERTICAL -->
-            <div class="gallery-item vertical">
-                <img src="https://placehold.co/500x800/e8e8e8/666666?text=Vertical" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Modern Alpine</h4>
-                    <p>Vail Village</p>
-                </div>
-            </div>
-
-            <!-- HORIZONTAL -->
-            <div class="gallery-item horizontal">
-                <img src="https://placehold.co/800x500/e8e8e8/666666?text=Horizontal" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Great Room</h4>
-                    <p>Cordillera</p>
-                </div>
-            </div>
-
-            <!-- VERTICAL -->
-            <div class="gallery-item vertical">
-                <img src="https://placehold.co/500x800/e8e8e8/666666?text=Vertical" alt="Project">
-                <div class="gallery-overlay">
-                    <h4>Metallic Accent</h4>
-                    <p>Denver Metro</p>
-                </div>
+            <!-- H in middle -->
+            <div class="gallery-item h" style="grid-column: 2; grid-row: 25 / span 3;">
+                <img src="https://placehold.co/600x400/eaac8b/333?text=H" alt="Project">
             </div>
 
         </div>
@@ -728,15 +602,9 @@
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
         <div class="lightbox-content">
             <img src="" alt="" id="lightbox-img">
-            <div class="lightbox-caption">
-                <h4 id="lightbox-title"></h4>
-                <p id="lightbox-location"></p>
-            </div>
         </div>
-        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
     </div>
 
     <!-- Footer -->
@@ -779,23 +647,16 @@
 
         // Lightbox
         const galleryItems = document.querySelectorAll('.gallery-item');
-        let currentIndex = 0;
 
-        galleryItems.forEach((item, index) => {
+        galleryItems.forEach((item) => {
             item.addEventListener('click', () => {
-                currentIndex = index;
                 openLightbox(item);
             });
         });
 
         function openLightbox(item) {
             const img = item.querySelector('img');
-            const title = item.querySelector('h4').textContent;
-            const location = item.querySelector('.gallery-overlay p').textContent;
-
             document.getElementById('lightbox-img').src = img.src;
-            document.getElementById('lightbox-title').textContent = title;
-            document.getElementById('lightbox-location').textContent = location;
             document.getElementById('lightbox').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -805,27 +666,9 @@
             document.body.style.overflow = '';
         }
 
-        function navigateLightbox(direction) {
-            currentIndex += direction;
-            
-            if (currentIndex < 0) currentIndex = galleryItems.length - 1;
-            if (currentIndex >= galleryItems.length) currentIndex = 0;
-
-            const item = galleryItems[currentIndex];
-            const img = item.querySelector('img');
-            const title = item.querySelector('h4').textContent;
-            const location = item.querySelector('.gallery-overlay p').textContent;
-
-            document.getElementById('lightbox-img').src = img.src;
-            document.getElementById('lightbox-title').textContent = title;
-            document.getElementById('lightbox-location').textContent = location;
-        }
-
         // Close lightbox on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') navigateLightbox(-1);
-            if (e.key === 'ArrowRight') navigateLightbox(1);
         });
 
         // Close lightbox on background click
